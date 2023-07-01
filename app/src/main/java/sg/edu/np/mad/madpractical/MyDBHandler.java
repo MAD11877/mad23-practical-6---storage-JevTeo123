@@ -25,9 +25,17 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db){
-        String CREATE_TABLE_COMMAND = "CREATE TABLE " + USERS + "(" + COLUMN_NAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_ID + " TEXT," + COLUMN_FOLLOWED + " TEXT)";
-        Log.i(title, CREATE_TABLE_COMMAND);
-        db.execSQL(CREATE_TABLE_COMMAND);
+//        String CREATE_TABLE_COMMAND = "CREATE TABLE " + USERS + "(" + COLUMN_NAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_ID + " PRIMARY KEY AUTOINCREMENT," + COLUMN_FOLLOWED + " TEXT)";
+        StringBuilder CREATE_TABLE_COMMAND;
+        CREATE_TABLE_COMMAND = new StringBuilder()
+                .append("CREATE TABLE")
+                        .append(USERS).append("(")
+                        .append(COLUMN_NAME).append(" TEXT, ")
+                        .append(COLUMN_DESCRIPTION).append(" TEXT, ")
+                        .append(COLUMN_ID).append(" PRIMARY KEY AUTO INCREMENT, ")
+                        .append(COLUMN_FOLLOWED).append(" TEXT, ");
+        Log.i(title, CREATE_TABLE_COMMAND.toString());
+        db.execSQL(CREATE_TABLE_COMMAND.toString());
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
