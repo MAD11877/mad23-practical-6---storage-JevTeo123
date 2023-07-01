@@ -13,16 +13,19 @@ import java.util.Random;
 
 public class ListActivity extends AppCompatActivity {
 
+    MyDBHandler myDBHandler = new MyDBHandler(this, null, null, 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
         ArrayList<User> userList = new ArrayList<>();
-        User mydata = new User();
         for (int i = 0; i < 21; i++){
             User newUser = CreateNewUser();
             userList.add(newUser);
+            myDBHandler.addUser(newUser);
+            Log.i("ListActivity", "Added User" + newUser);
+
             Log.i("ListActivity", Integer.toString(i));
         }
         //userList.remove()

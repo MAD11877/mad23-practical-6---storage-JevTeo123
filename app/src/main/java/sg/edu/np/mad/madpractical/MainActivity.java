@@ -12,6 +12,8 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    MyDBHandler myDBHandler = new MyDBHandler(this, null, null, 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 if (ranUser.followed == false){
                     fbutton.setText("Unfollow");
                     ranUser.followed = true;
+                    myDBHandler.updateUser(ranUser.name);
                 } else {
                     fbutton.setText("Follow");
                     ranUser.followed = false;
